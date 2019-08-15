@@ -1,11 +1,12 @@
 // import
-import renderLandingToDom from "./landing/dom.js";
-import loginDomObject from "./login/dom.js"
+import landingDomObject from "./landing/dom.js";
+import registerFormBtn from "./landing/landing.js";
+
 // end import
 
 // begin landing page
-renderLandingToDom();
-
+landingDomObject.renderLandingToDom();
+registerFormBtn();
 // end landing page
 
 // begin login page
