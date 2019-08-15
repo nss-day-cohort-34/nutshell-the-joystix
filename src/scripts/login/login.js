@@ -1,18 +1,23 @@
 import loginDomObject from "./login/dom.js"
-
-loginDomObject.loginContainer.addEventListener("click" (event) => {
-
-})
+import loginDataObject from "./login/data.js"
 
 
-// restaurantResults.addEventListener("click", (event) => {
-//     if (event.target.tagName === 'BUTTON') {
-//         const button = event.target
-//         const restaurantAddress = button.previousElementSibling
-//         const restaurantName = restaurantAddress.previousElementSibling
-//         let restaurantItineraryName = restaurantName.innerText
-//         let restaurantItineraryAddress = restaurantAddress.innerText
-//         const restaurantItineraryHTML = createItineraryRestaurant(restaurantItineraryName, restaurantItineraryAddress)
-//         renderRestaurantItinerary(restaurantItineraryHTML)
-//     }
-//   })
+
+
+loginDomObject.loginContainer.addEventListener("click", (event) => {
+    if (event.target.tagName === 'BUTTON') {
+        const button = event.target
+        const loginUsernameInput = document.querySelector("#login__username__input")
+        const loginPasswordInput = document.querySelector("#login__password__input")
+        loginDomObject.loginContainer.innerHTML = ""
+        loginDataObject.getLoggedInUserData()
+            .then(users => {
+              let loggedInUser = users.find(user => user.username === loginUsernameInput.value)
+            })
+
+
+        if (loginDataObject.getLoggedInUserData) {
+
+        }
+    }
+  })
