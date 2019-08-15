@@ -1,6 +1,6 @@
-import registerHtml from "./factory.js"
+import registerHtml from "./factory.js";
 
 export default () => {
-    const mainTag = document.querySelector("#main")
-    mainTag.innerHTML = registerHtml()
-}
+  const mainTag = document.querySelector("#main");
+  mainTag.innerHTML = registerHtml();
+};
