@@ -1,5 +1,6 @@
 import landingDomObject from "./dom.js";
 import renderRegisterForm from "../register/dom.js";
+import renderLoginObject from "../login/dom.js"
 
 const mainContainer = landingDomObject.landingContainer;
 
@@ -16,7 +17,7 @@ const loginFormBtn = () => {
   mainContainer.addEventListener("click", () => {
     if (event.target.id.includes("login")) {
       mainContainer.innerHTML = "";
-      renderLoginForm();
+      renderLoginObject.renderLoginToDom();
     }
   });
 };
