@@ -1,5 +1,9 @@
-const message = "Time to build an application that gives you all the information you need in a Nutshell"
+// import
+import renderLandingToDom from "./landing/dom.js";
 
-document.querySelector("#container").innerHTML = `<h1>${message}</h1>`
+// end import
 
-console.log(message)
+// begin landing page
+renderLandingToDom();
+
+// end landing page
