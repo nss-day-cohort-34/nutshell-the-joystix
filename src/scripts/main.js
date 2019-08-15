@@ -10,6 +10,6 @@ registerFormBtn();
 // end landing page
 
 // begin login page
-loginDomObject.renderLoginToDom()
+
 
 //end login page

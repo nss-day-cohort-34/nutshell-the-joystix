@@ -1,12 +1,10 @@
+
+//IN PROGRESS...
 import loginDomObject from "./login/dom.js"
 import loginDataObject from "./login/data.js"
 
-
-
-
 loginDomObject.loginContainer.addEventListener("click", (event) => {
-    if (event.target.tagName === 'BUTTON') {
-        const button = event.target
+    if (event.target.includes("userLogin") {
         const loginUsernameInput = document.querySelector("#login__username__input")
         const loginPasswordInput = document.querySelector("#login__password__input")
         loginDomObject.loginContainer.innerHTML = ""
@@ -19,5 +17,5 @@ loginDomObject.loginContainer.addEventListener("click", (event) => {
         if (loginDataObject.getLoggedInUserData) {
 
         }
-    }
-  })
+    })
+})
