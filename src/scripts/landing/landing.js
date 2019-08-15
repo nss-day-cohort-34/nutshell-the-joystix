@@ -12,4 +12,13 @@ const registerFormBtn = () => {
   });
 };
 
-export default registerFormBtn;
+const loginFormBtn = () => {
+  mainContainer.addEventListener("click", () => {
+    if (event.target.id.includes("login")) {
+      mainContainer.innerHTML = "";
+      renderLoginForm();
+    }
+  });
+};
+
+export default { registerFormBtn, loginFormBtn };
