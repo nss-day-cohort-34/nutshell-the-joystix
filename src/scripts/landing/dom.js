@@ -7,4 +7,4 @@ const renderLandingToDom = () => {
   landingContainer.innerHTML += landingHTML;
 };
 
-export default renderLandingToDom;
+export default { renderLandingToDom, landingContainer };
