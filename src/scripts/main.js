@@ -1,6 +1,7 @@
 // import
 import landingDomObject from "./landing/dom.js";
 import landingEventObject from "./landing/landing.js";
+import registerAddUser from "./register/register.js"
 
 
 // end import
@@ -15,3 +16,6 @@ landingEventObject.loginFormBtn()
 
 
 //end login page
+
+// register click listener for when a user clicks on addUser button
+registerAddUser()
