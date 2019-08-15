@@ -12,6 +12,6 @@ export default `
     <input type="password" name="password" id="passowrd">
 </fieldset>
 <fieldset class="register__fieldset">
-    <input type="submit" value="Register">
+    <input type="submit" value="Register" id="register__button">
 </fieldset>
 `
