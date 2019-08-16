@@ -7,8 +7,8 @@ import navBarDomObject from "./navbar/dom.js";
 // end import
 
 // navBar
-// navBarDomObject.renderHomeNavBar();
-// navBarDomObject.renderFriendsNavBar();
+navBarDomObject.renderHomeNavBar();
+navBarDomObject.renderFriendsNavBar();
 //navBar
 
 // begin landing page
