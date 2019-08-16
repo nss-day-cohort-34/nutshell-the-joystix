@@ -1,4 +1,4 @@
-import API from "./data.js"
+import API from "../data/data.js"
 
 const addUser = () => {
     const mainTag = document.querySelector("#main")
@@ -12,13 +12,13 @@ const addUser = () => {
 
             API.getUsersData()
             .then(parsedUsers => {
-                if(parsedUsers.find(user => user.username.toLowerCase() === usernameInput.value.toLowerCase())) {
+                if (parsedUsers.find(user => user.username.toLowerCase() === usernameInput.value.toLowerCase())) {
                     alert("Username already exists")
                 } else if (parsedUsers.find(user => user.email.toLowerCase() === emailInput.value.toLowerCase())){
                     alert("Email already exists")
                 } else if(usernameInput.value === "" || emailInput.value === "" || passwordInput.value === "" || firstNameInput.value === "" || lastNameInput.value === "") {
                     alert("Please fill out all fields")
-                } else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput.value))){
+                } else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput.value))) {
                     alert("Please enter a valid email address")
                 }
                 else {

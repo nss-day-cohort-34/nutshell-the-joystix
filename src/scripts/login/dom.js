@@ -4,7 +4,7 @@ const loginContainer = document.querySelector("#main");
 
 const renderLoginToDom = () => {
   const loginHTML = createLoginHTML();
-  loginContainer.innerHTML += loginHTML;
+  loginContainer.innerHTML = loginHTML;
 };
 
-export default {renderLoginToDom, loginContainer};
+export default {renderLoginToDom};

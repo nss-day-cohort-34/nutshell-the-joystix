@@ -4,4 +4,4 @@ const getUserData = () => {
 }
 
 
-export default {getLoggedInUserData}
+export default {getUserData}
