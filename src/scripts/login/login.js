@@ -8,11 +8,8 @@ const userLogin = () => {
             const loginUsernameInput = document.querySelector("#log__username")
             const loginPasswordInput = document.querySelector("#log__password")
             //Get user data
-            //THEN Authenticate login
-            //THEN clear out DOM
-            //THEN set session storage to store logged in user's id
-            //THEN render home page
             API.getUsersData()
+                //THEN Authenticate login
                 .then(parsedUsers => {
                     if (loginUsernameInput.value === "" || loginPasswordInput.value === "") {
                         alert("Please fill out all fields")
@@ -24,10 +21,31 @@ const userLogin = () => {
                         } else if (foundUser.password !== loginPasswordInput.value) {
                             alert("Incorrect password. Try again.")
                         } else {
+                        //THEN clear out DOM
                             mainTag.innerHTML = ""
                             // Set session storage to store logged in user's id
                             sessionStorage.setItem("activeUser", foundUser.id)
                             // Render Home Page
+
+                            //news
+
+
+                            //end news
+
+                            //events
+
+
+                            //end events
+
+                            //tasks
+
+
+                            //end tasks
+
+                            //chat
+
+
+                            //end chat
                         }
                     }
                 })
