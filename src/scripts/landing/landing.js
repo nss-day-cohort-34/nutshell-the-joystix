@@ -1,6 +1,6 @@
 import landingDomObject from "./dom.js";
 import renderRegisterForm from "../register/dom.js";
-import renderLoginObject from "../login/dom.js"
+import renderLoginObject from "../login/dom.js";
 
 const mainContainer = landingDomObject.landingContainer;
 
