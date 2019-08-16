@@ -1,4 +1,4 @@
-import API from "./data.js"
+import API from "../data/data.js"
 
 const addUser = () => {
     const mainTag = document.querySelector("#main")
