@@ -6,10 +6,10 @@ const createLoginHTML = () => {
         </fieldset>
         <fieldset>
             <label>password:</label>
-            <input type="text" id="login__password__input">
+            <input type="password" id="login__password__input">
         </fieldset>
         <button id="userLogin__button">Login</button>
-      `;
+      `
   };
 
   export default createLoginHTML;
