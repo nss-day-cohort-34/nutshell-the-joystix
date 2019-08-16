@@ -2,13 +2,13 @@ const createLoginHTML = () => {
     return `
         <fieldset>
             <label>username:</label>
-            <input type="text" id="login__username__input">
+            <input type="text" id="log__username">
         </fieldset>
         <fieldset>
             <label>password:</label>
-            <input type="password" id="login__password__input">
+            <input type="password" id="log__password">
         </fieldset>
-        <button id="userLogin__button">Login</button>
+        <button id="userLog__button">Login</button>
       `
   };
 
