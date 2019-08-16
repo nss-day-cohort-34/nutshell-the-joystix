@@ -9,7 +9,6 @@ const newNewsObject = (userId, url, title, synopsis, date) => {
     }
 }
 
-
 const createNewsHTML = (title, synopsis, url) => {
     return `
     <h2 class="name">${title}</h2>
