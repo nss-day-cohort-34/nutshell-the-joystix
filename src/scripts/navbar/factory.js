@@ -1,8 +1,8 @@
 const createHomeNavBar = () => {
   return `
     <nav>
-        <a href="#friends">Friends</a>
-        <a href="#logout">Logout</a>
+        <button id="friends__button">Friends</button>
+        <button class="logout__button">Logout</button>
     </nav>
     
     `;
@@ -11,8 +11,8 @@ const createHomeNavBar = () => {
 const createFriendsNavBar = () => {
   return `
     <nav>
-        <a href="#home">Home</a>
-        <a href="#logout">Logout</a>
+        <button id="home__button">Home</button>
+        <button class="logout__button">Logout</button>
     </nav>
     `;
 };
