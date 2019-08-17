@@ -12,3 +12,10 @@ const newEventObject = (name, date, location) => {
     <p class="info">${date}</p>
     `
  }
+ const createEventInputs = () => {
+    return `
+    <input type="text" id="eventName__input">
+    <textarea id="eventLocation__input></textarea>
+    <input type="date" id="eventDate__input>
+    `
+ }
