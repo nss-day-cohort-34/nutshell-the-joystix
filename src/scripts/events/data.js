@@ -23,4 +23,19 @@ const API = {
           "Content-Type": "application/json"
         }
       })
+    },
+    editEvent(event) {
+        return fetch(`http://localhost:8088/nutshell/${event.id}`, {
+            "method": "PUT",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify(event)
+        })
+            .then(response => response.json())
+  
     }
+   
+  }  
+  
+  export default API
