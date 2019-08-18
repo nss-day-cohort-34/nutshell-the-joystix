@@ -14,4 +14,13 @@ const API = {
             },
             body: JSON.stringify(entryObject)
         })
+    },
+
+    deleteEvent(deleteBtn) {
+      return fetch(`http://localhost:8088/nutshell/${deleteBtn}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
     }
