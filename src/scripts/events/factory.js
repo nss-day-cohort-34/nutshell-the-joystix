@@ -7,7 +7,7 @@ const htmlRep = {
 
    createEventInputs() {
       return `
-   <section id="event__inputs">
+   <section class="event__inputs">
       <legend>Add New Event</legend>
       <fieldset>
          <label for="eventName__input">Name:</label>
@@ -32,7 +32,7 @@ const htmlRep = {
 
    createEventHTML(event) {
       return `
-    <section id="event__output${event.id}>
+    <section class="event__output ${event.id}">
       <h2 class="name">${event.name}</h2>
       <p class="info">${event.date}</p>
       <p class="info"> ${event.location}</p>
