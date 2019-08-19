@@ -1,27 +1,67 @@
 
-// const newNewsObject = (userId, url, title, synopsis, date) => {
-//     return {
-//         userId: userId,
-//         url: url,
-//         title: title,
-//         synopsis: synopsis,
-//         date: date
-//     }
-// }
 const factory = {
+    createNewsContainer () {
+        return `
+        <section id="news__container">News</section>
+        `
+    },
     createNewsHTML (articleObj) {
         return `
-        <section class="newsItem" id="newsItem--${articleObj.id}>
+        <section class="newsItem" id="newsItem--${articleObj.id}">
             <h2 class="name">${articleObj.title}</h2>
             <p class="info"> ${articleObj.synopsis}</p>
             <p class="info">${articleObj.date}</p>
-            <p class="info">${articleObj.url}</p></p>
+            <a class="info">${articleObj.url}</a>
+        </section>
+        <section class="button__container">
+            <button class="edit__button" id="deleteArticle--${articleObj.id}">Edit</button>
+            <button class="delete__button" id="deleteArticle--${articleObj.id}">Delete</button>
         </section>
         `
     },
-    createAddArticleButton () {},
-
+    createAddArticleButton () {
+        return `
+            <section>
+                <button id="addArticle__button">+</button>
+            </section>
+        `
+    },
+    createNewArticleInputs () {
+        return `
+            <section id="inputContainer">
+                <fieldset>
+                    <label for="title">Title</label>
+                    <input id="titleInput" type="text">
+                </fieldset>
+                <fieldset>
+                    <label for="synopsis">Synopsis</label>
+                    <textarea id="synopsisInput"></textarea>
+                </fieldset>
+                <fieldset>
+                    <label for="date">Date</label>
+                    <input id="dateInput" type="date">
+                </fieldset>
+                <fieldset>
+                    <label for="url">URL</label>
+                    <input id="urlInput" type="text">
+                </fieldset>
+            </section>
+            <section>
+                <button id="submitNewArticle__button">Submit</button>
+            </section>
+        `
+    },
+    createNewsObject (userId, url, title, synopsis, date) {
+        return {
+            userId: userId,
+            url: url,
+            title: title,
+            synopsis: synopsis,
+            date: date
+        }
+    }
 }
+
 // const createNewsInputs = () => {
 //     return `
 //     <input type="text" id="newsTitle__input">
