@@ -9,7 +9,7 @@ const eventEntry= {
       }
   },
   updateFormFields(editBtnId) {
-      fetch(`http://localhost:8088/nutshell/${editBtnId}`)
+      fetch(`http://localhost:8088/events/${editBtnId}`)
       .then(response => response.json())
       .then(event => {
           /*

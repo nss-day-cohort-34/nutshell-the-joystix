@@ -1,23 +1,23 @@
 
 const API = {
     getEventData() {
-        return fetch("http://localhost:8088/nutshell_sort=date&_order=desc") 
+        return fetch("http://localhost:8088/events?_sort=date&_order=desc") 
             .then(response => response.json()) 
 
     },
 
-    saveEvent(entryObject) {
-        return fetch("http://localhost:8088/nutshell", {
+    saveEvent(eventObject) {
+        return fetch("http://localhost:8088/events", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(entryObject)
+            body: JSON.stringify(eventObject)
         })
     },
 
     deleteEvent(deleteBtn) {
-      return fetch(`http://localhost:8088/nutshell/${deleteBtn}`, {
+      return fetch(`http://localhost:8088/events/${deleteBtn}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -25,7 +25,7 @@ const API = {
       })
     },
     editEvent(event) {
-        return fetch(`http://localhost:8088/nutshell/${event.id}`, {
+        return fetch(`http://localhost:8088/events/${event.id}`, {
             "method": "PUT",
             "headers": {
                 "Content-Type": "application/json"
