@@ -11,6 +11,7 @@ const renderTaskHeader = () => {
 };
 
 const getTasksPostToDom = () => {
+  taskContainer.innerHTML = "";
   taskAPImethods
     .getTasks(parseInt(sessionStorage.getItem("activeUser")))
     .then(parsedTasks => {
@@ -29,6 +30,9 @@ const renderNewTaskButton = () => {
 
 taskContainer.addEventListener("click", event => {
   if (event.target.id.startsWith("addNewTask")) {
+    taskContainer.innerHTML = "";
+    getTasksPostToDom();
+    renderTaskHeader();
     const taskForm = taskFactoryObj.createTaskFormHTML();
     taskDomObj.renderTaskForm(taskForm);
   }
@@ -36,13 +40,13 @@ taskContainer.addEventListener("click", event => {
 
 taskContainer.addEventListener("click", event => {
   if (event.target.id.startsWith("submitNewTask")) {
-    const newTask = document.querySelector("#newTask__input").value;
-    const newTaskDate = document.querySelector("#newTask__date").value;
+    const newTask = document.querySelector("#newTask__input");
+    const newTaskDate = document.querySelector("#newTask__date");
 
     const taskObj = {
       userId: parseInt(sessionStorage.getItem("activeUser")),
-      newTask: newTask,
-      newTaskDate: newTaskDate,
+      taskName: newTask.value,
+      taskDate: newTaskDate.value,
       isComplete: false
     };
 
@@ -51,7 +55,21 @@ taskContainer.addEventListener("click", event => {
     } else {
       taskAPImethods
         .postTaskEntry(taskObj)
+        .then(getTasksPostToDom)
+        .then(renderTaskHeader)
+        .then(renderNewTaskButton);
     }
+  }
+});
+
+taskContainer.addEventListener("click", () => {
+  if (event.target.id.startsWith("task__checkbox")) {
+    const id = event.target.id.split("-")[1];
+    taskAPImethods
+      .deleteTaskEntry(id)
+      .then(getTasksPostToDom)
+      .then(renderTaskHeader)
+      .then(renderNewTaskButton);
   }
 });
 

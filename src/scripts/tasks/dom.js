@@ -18,6 +18,7 @@ const renderTaskForm = taskHTML => {
   taskContainer.innerHTML += taskHTML;
 };
 
+
 export default {
   renderTaskHeader,
   renderTaskList,
