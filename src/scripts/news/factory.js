@@ -18,7 +18,9 @@ const factory = {
             <p class="info">${articleObj.url}</p></p>
         </section>
         `
-    }
+    },
+    createAddArticleButton () {},
+
 }
 // const createNewsInputs = () => {
 //     return `
