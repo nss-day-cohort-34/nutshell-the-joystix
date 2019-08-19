@@ -27,4 +27,15 @@ const clearInputs = () => {
     locationInput.value = ""
   }
   
+  eventsContainer.addEventListener("click", () => {
+    if (event.target.id.startsWith("deleteBtnId")) {
+        const deleteBtnId = event.target.id.split("--")[1]
+        API.deleteEvent(deleteBtnId)
+            .then(getAndRender)
+    }
+    if (event.target.id.startsWith("editBtnId")) {
+        const editBtnId = event.target.id.split("--")[1]
+        eventEntry.updateFormFields(editBtnId)
+    }
+})
   export default {hiddenEventId, nameInput, locationInput,dateInput, eventsContainer, addEventBtn}
