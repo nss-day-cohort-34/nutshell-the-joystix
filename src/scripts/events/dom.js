@@ -12,11 +12,6 @@ const eventEntry= {
       fetch(`http://localhost:8088/events/${editBtnId}`)
       .then(response => response.json())
       .then(event => {
-          /*
-              Now that you KNOW you have the data, render
-              an editing form that represents the current
-              state of the resource.
-          */
          domReferences.hiddenEventId.value = event.id // Hidden value.
          domReferences.nameInput.value = event.name 
          domReferences.locationInput.value = event.location
