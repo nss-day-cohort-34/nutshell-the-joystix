@@ -11,13 +11,15 @@ const renderTaskHeader = () => {
 };
 
 const getTasksPostToDom = () => {
-  taskAPImethods.getTasks().then(parsedTasks => {
-    for (let i = 0; i < parsedTasks.length; i++) {
-      const tasks = parsedTasks[i];
-      const convertedTasks = taskFactoryObj.createTaskListHTML(tasks);
-      taskDomObj.renderTaskList(convertedTasks);
-    }
-  });
+  taskAPImethods
+    .getTasks(parseInt(sessionStorage.getItem("activeUser")))
+    .then(parsedTasks => {
+      for (let i = 0; i < parsedTasks.length; i++) {
+        const tasks = parsedTasks[i];
+        const convertedTasks = taskFactoryObj.createTaskListHTML(tasks);
+        taskDomObj.renderTaskList(convertedTasks);
+      }
+    });
 };
 
 const renderNewTaskButton = () => {
@@ -29,6 +31,27 @@ taskContainer.addEventListener("click", event => {
   if (event.target.id.startsWith("addNewTask")) {
     const taskForm = taskFactoryObj.createTaskFormHTML();
     taskDomObj.renderTaskForm(taskForm);
+  }
+});
+
+taskContainer.addEventListener("click", event => {
+  if (event.target.id.startsWith("submitNewTask")) {
+    const newTask = document.querySelector("#newTask__input").value;
+    const newTaskDate = document.querySelector("#newTask__date").value;
+
+    const taskObj = {
+      userId: parseInt(sessionStorage.getItem("activeUser")),
+      newTask: newTask,
+      newTaskDate: newTaskDate,
+      isComplete: false
+    };
+
+    if (taskObj.newTask === "" || taskObj.newTaskDate === "") {
+      alert("Please fill out both fields");
+    } else {
+      taskAPImethods
+        .postTaskEntry(taskObj)
+    }
   }
 });
 

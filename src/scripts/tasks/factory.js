@@ -12,8 +12,7 @@ const createTaskListHTML = tasks => {
   <section id="taskItem-${tasks.id}">
     <input type="checkbox" id="task__checkbox" >
     <p>${tasks.taskName}</p>
-    <p>${tasks.taskDate}</p>
-    <button id="deleteTask-${tasks.id}">Delete Task</button>
+    <p>Due Date: ${tasks.taskDate}</p>
   </section>`;
 };
 
@@ -22,8 +21,12 @@ const createTaskFormHTML = () => {
   return `
     <section id="newTask__form">
         <fieldset>
-            <label>New Task Name</lable>
+            <label>New Task</lable>
             <input type="text" id="newTask__input" >
+        </fieldset>
+        <fieldset>
+          <label>Due Date</label>
+          <input type="date" id="newTask__date" >
         </fieldset>
         <button id="submitNewTask__button">Submit</button>
     </section>`;
@@ -31,7 +34,7 @@ const createTaskFormHTML = () => {
 
 const createNewTaskButton = () => {
   return `
-  <section>
+  <section id="createNewTask__section">
     <button id="addNewTask__button">Add New Task!</button>
   </section>
   `;

@@ -14,7 +14,7 @@ const renderNewTaskButton = taskBtn => {
   taskContainer.innerHTML += taskBtn;
 };
 
-const renderTaskForm = (taskHTML) => {
+const renderTaskForm = taskHTML => {
   taskContainer.innerHTML += taskHTML;
 };
 
