@@ -2,6 +2,7 @@ import factory from "./factory.js"
 
 const newsContainer = document.querySelector("#main")
 
+
 const sortArticles = (articles) => {
     articles.sort(function(a, b) {
         if (a.date < b.date) {
@@ -29,8 +30,11 @@ const dom = {
     },
     renderNewArticleInputs (newHTML) {
         newsContainer.innerHTML += newHTML
+    },
+    renderNewsContainer () {
+        let newsContainerHTML = factory.createNewsContainer()
+        mainContainer.innerHTML += newsContainerHTML
     }
-
 }
 
 export default dom

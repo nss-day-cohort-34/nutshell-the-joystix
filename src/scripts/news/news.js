@@ -3,6 +3,7 @@ import data from "./data.js";
 import factory from "./factory.js"
 
 const newsContainer = document.querySelector("#main")
+let loggedInUser = parseInt(sessionStorage.getItem("activeUser"))
 
 const getAndRenderNews = (userId) => {
     dom.renderAddArticleButton()
@@ -35,13 +36,57 @@ newsContainer.addEventListener("click", event => {
             alert("Please fill in all fields before submitting")
         } else {
             newsContainer.innerHTML = ""
-            let loggedInUser = parseInt(sessionStorage.getItem("activeUser"))
             const newArticleObject = factory.createNewsObject(loggedInUser, titleInput.value, synopsisInput.value, dateInput.value, urlInput.value)
             data.saveNewArticle(newArticleObject)
                 .then(() => {
                     getAndRenderNews(loggedInUser)
                 })
         }
+    }
+})
+
+newsContainer.addEventListener("click", event => {
+    if (event.target.id.startsWith("deleteArticle--")) {
+        const articleToDelete = event.target.id.split("--")[1]
+        console.log(articleToDelete)
+        data.deleteArticle(articleToDelete)
+            .then(data.getEntriesData)
+            .then(() => {
+                newsContainer.innerHTML = ""
+                getAndRenderNews(loggedInUser)
+            })
+    }
+})
+
+newsContainer.addEventListener("click", event => {
+    if (event.target.id.startsWith("editArticle--")) {
+        const articleToEditId = event.target.id.split("--")[1]
+        const buttonForArticleToEdit = document.querySelector(`#editArticle--${articleToEditId}`)
+        const articleToEdit = buttonForArticleToEdit.parentNode
+        articleToEdit.innerHTML = `
+        <section id="inputContainer">
+            <fieldset>
+                <label for="title">Title</label>
+                <input id="titleInput" type="text">
+            </fieldset>
+            <fieldset>
+                <label for="synopsis">Synopsis</label>
+                <textarea id="synopsisInput"></textarea>
+            </fieldset>
+            <fieldset>
+                <label for="date">Date</label>
+                <input id="dateInput" type="date">
+            </fieldset>
+            <fieldset>
+                <label for="url">URL</label>
+                <input id="urlInput" type="text">
+            </fieldset>
+        </section>
+        <section>
+            <button id="submitNewArticle__button">Submit</button>
+        </section>
+        `
+        console.log(articleToEdit)
     }
 })
 

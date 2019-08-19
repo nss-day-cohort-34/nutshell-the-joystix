@@ -12,11 +12,11 @@ const factory = {
             <p class="info"> ${articleObj.synopsis}</p>
             <p class="info">${articleObj.date}</p>
             <a class="info">${articleObj.url}</a>
-        </section>
-        <section class="button__container">
-            <button class="edit__button" id="deleteArticle--${articleObj.id}">Edit</button>
+            <button class="edit__button" id="editArticle--${articleObj.id}">Edit</button>
             <button class="delete__button" id="deleteArticle--${articleObj.id}">Delete</button>
         </section>
+
+
         `
     },
     createAddArticleButton () {
@@ -62,12 +62,5 @@ const factory = {
     }
 }
 
-// const createNewsInputs = () => {
-//     return `
-//     <input type="text" id="newsTitle__input">
-//     <textarea id="newsSynopsis__input></textarea>
-//     <input type="date" id="newsDate__input>
-//     `
-// }
 
 export default factory
