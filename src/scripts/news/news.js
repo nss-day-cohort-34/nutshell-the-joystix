@@ -62,7 +62,8 @@ newsContainer.addEventListener("click", event => {
     if (event.target.id.startsWith("editArticle--")) {
         const articleToEditId = event.target.id.split("--")[1]
         const buttonForArticleToEdit = document.querySelector(`#editArticle--${articleToEditId}`)
-        const articleToEdit = buttonForArticleToEdit.parentNode
+        const articleToEdit = buttonForArticleToEdit.parentNode.previousElementSibling
+        console.log(articleToEdit)
         articleToEdit.innerHTML = `
         <section id="inputContainer">
             <fieldset>
@@ -86,7 +87,10 @@ newsContainer.addEventListener("click", event => {
             <button id="submitNewArticle__button">Submit</button>
         </section>
         `
-        console.log(articleToEdit)
+        //GET article data
+        //convert and render as input values (update form fields)
+        //POST updated article
+        //GET and render all articles
     }
 })
 

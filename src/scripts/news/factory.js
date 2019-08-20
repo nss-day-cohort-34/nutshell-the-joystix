@@ -11,10 +11,13 @@ const factory = {
             <h2 class="name">${articleObj.title}</h2>
             <p class="info"> ${articleObj.synopsis}</p>
             <p class="info">${articleObj.date}</p>
-            <a class="info">${articleObj.url}</a>
+            <a class="info" href="${articleObj.url}">link</a>
+        </section>
+        <section>
             <button class="edit__button" id="editArticle--${articleObj.id}">Edit</button>
             <button class="delete__button" id="deleteArticle--${articleObj.id}">Delete</button>
         </section>
+
 
 
         `
