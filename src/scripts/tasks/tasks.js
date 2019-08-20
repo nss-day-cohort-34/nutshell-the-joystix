@@ -2,9 +2,11 @@ import taskAPImethods from "../tasks/data.js";
 import taskFactoryObj from "../tasks/factory.js";
 import taskDomObj from "../tasks/dom.js";
 
+// one function that runs everything for tasks
 const renderTaskSection = () => {
   // creates task section as HTML and store in variable
   const taskSectionHTML = taskFactoryObj.createTaskSection();
+
   // pass taskHTMLstring into function that renders it to the dom
   taskDomObj.renderTaskSection(taskSectionHTML);
 
@@ -77,6 +79,7 @@ const renderTaskSection = () => {
         .then(getTasksToDom);
       // edit the task with PUT method
     } else if (event.target.id.startsWith("editTask")) {
+      // renders a form to edit the task
       const id = event.target.id.split("-")[1];
 
       const editTaskContainer = document.querySelector(
@@ -107,6 +110,7 @@ const renderTaskSection = () => {
         editTaskDate.value = task.taskDate;
       });
     } else if (event.target.id.startsWith("submitEditTask")) {
+      // submits editted task
       const hiddenTaskForm = document.querySelector("#editForm__hiddenInput");
       const editTaskInput = document.querySelector("#editName__input");
       const editTaskDate = document.querySelector("#editDate__date");
