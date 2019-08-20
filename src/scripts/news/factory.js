@@ -2,7 +2,15 @@
 const factory = {
     createNewsContainer () {
         return `
-        <section id="news__container">News</section>
+        <section id="news__container">
+            <h3>News</h3>
+            <div>
+                <button id="addArticle__button">+</button>
+            </div>
+            <div id="newsList">
+            
+            </div>
+        </section>
         `
     },
     createNewsHTML (articleObj) {
@@ -19,13 +27,13 @@ const factory = {
         </section>
         `
     },
-    createAddArticleButton () {
-        return `
-            <section>
-                <button id="addArticle__button">+</button>
-            </section>
-        `
-    },
+    // createAddArticleButton () {
+    //     return `
+    //         <section>
+    //             <button id="addArticle__button">+</button>
+    //         </section>
+    //     `
+    // },
     createNewArticleInputs () {
         return `
             <section id="inputContainer">
