@@ -1,0 +1,9 @@
+#taskList__div {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.taskItem {
+  border: 1px solid black;
+  margin: 2px;
+}
