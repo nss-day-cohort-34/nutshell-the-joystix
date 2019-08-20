@@ -1,9 +1,8 @@
 
-const API = {
-    getEventData() {
-        return fetch("http://localhost:8088/events?_sort=date&_order=desc") 
-            .then(response => response.json()) 
-
+const eventAPI = {
+    getEventData(userId) {
+        return fetch(`http://localhost:8088/events?userId=${userId}`)
+            .then(response => response.json())
     },
 
     saveEvent(eventObject) {
@@ -23,19 +22,19 @@ const API = {
           "Content-Type": "application/json"
         }
       })
-    },
-    editEvent(event) {
-        return fetch(`http://localhost:8088/events/${event.id}`, {
-            "method": "PUT",
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "body": JSON.stringify(event)
-        })
-            .then(response => response.json())
-  
     }
-   
-  }  
-  
-  export default API
+    // editEvent(event) {
+    //     return fetch(`http://localhost:8088/events/${event.id}`, {
+    //         "method": "PUT",
+    //         "headers": {
+    //             "Content-Type": "application/json"
+    //         },
+    //         "body": JSON.stringify(event)
+    //     })
+    //         .then(response => response.json())
+
+    // }
+
+  }
+
+  export default eventAPI

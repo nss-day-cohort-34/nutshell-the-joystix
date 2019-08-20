@@ -1,13 +1,6 @@
 const htmlRep = {
-   createAddEventsButton() {
-      return `
-   <button id="addEvent__button">Add a New Event</button>
-   `
-   },
-
    createEventInputs() {
       return `
-   <section class="event__inputs">
       <legend>Add New Event</legend>
       <fieldset>
          <label for="eventName__input">Name:</label>
@@ -17,33 +10,44 @@ const htmlRep = {
          <label for="eventLocation__input">Location:</label>
          <input type="text" id="eventLocation__input"></textarea>
       </fieldset>
-      <button id="addEvent__button">Add Event</button>
-   </section>
+      <button id="submit">Submit</button>
    `
    },
 
-   newEventObject(name, date, location) {
+   createEventObject(userId, name, date, location) {
       return {
+         userId: userId,
          name: name,
          date: date,
          location: location,
       }
    },
 
-   createEventHTML(event) {
+   createEventsContainer() {
       return `
-    <section class="event__output ${event.id}">
-      <h2 class="name">${event.name}</h2>
-      <p class="info">${event.date}</p>
-      <p class="info"> ${event.location}</p>
-      <button class = "editBtn" id="editBtnId--${event.id}">
-      Edit
-      </button>
-      <button class = "deleteBtn" id="deleteBtnId--${event.id}">
-      Delete
-      </button>
-    </section>
-    `
+      <section class="eventList__section" id="eventList__section">
+         <aside id="addEvent__aside">
+            <button id="addNewEvent__button">Add a New Event</button>
+         </aside>
+         <article id="eventCard__article">
+          </article>
+    </section>`
+   },
+
+   createEventCard(event) {
+      return `
+   <div id="eventCard__div--${event.id}">
+        <h2 class="name">${event.name}</h2>
+        <p class="info">${event.date}</p>
+        <p class="info"> ${event.location}</p>
+        <button class = "editBtn" id="editBtnId--${event.id}">
+        Edit
+        </button>
+        <button class = "deleteBtn" id="deleteBtnId--${event.id}">
+        Delete
+        </button>
+    </div>
+`
    }
 }
 export default htmlRep
