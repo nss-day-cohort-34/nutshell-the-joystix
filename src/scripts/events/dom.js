@@ -14,6 +14,7 @@ let addEventContainer = document.querySelector("#addEvent__aside")
 const eventEntry = {
   renderEvents(parsedEntries) {
     const eventsContainer = document.querySelector("#eventCard__article")
+    eventsContainer.innerHTML = ""
     for (let eventEntry of parsedEntries) { //changed const to let
       let eventEntryHTML = htmlRep.createEventCard(eventEntry) //changed const to let
       eventsContainer.innerHTML += eventEntryHTML
@@ -31,7 +32,7 @@ const eventEntry = {
     fetch(`http://localhost:8088/events/${editBtnId}`)
       .then(response => response.json())
       .then(event => {
-        hiddenEventId.value = event.id // Hidden value.
+
         nameInput.value = event.name
         locationInput.value = event.location
         dateInput.value = event.date
@@ -42,8 +43,7 @@ const eventEntry = {
   getAndRenderEvents(userId) {
 
     eventAPI.getEventData(userId)
-      .then(parsedEntries => { this.renderEvents(parsedEntries) })
-      .then(registerEventsSectionListener)
+      .then(eventEntry.renderEvents)
   }
 }
 export default eventEntry

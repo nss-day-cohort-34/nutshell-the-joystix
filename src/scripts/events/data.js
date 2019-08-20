@@ -22,18 +22,18 @@ const eventAPI = {
           "Content-Type": "application/json"
         }
       })
-    }
-    // editEvent(event) {
-    //     return fetch(`http://localhost:8088/events/${event.id}`, {
-    //         "method": "PUT",
-    //         "headers": {
-    //             "Content-Type": "application/json"
-    //         },
-    //         "body": JSON.stringify(event)
-    //     })
-    //         .then(response => response.json())
+    },
+    editEvent(editedEvent) {
+        return fetch(`http://localhost:8088/events/${editedEvent.id}`, {
+            "method": "PUT",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify(editedEvent)
+        })
+            .then(response => response.json())
 
-    // }
+    }
 
   }
 

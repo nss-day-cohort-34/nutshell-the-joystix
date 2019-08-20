@@ -25,10 +25,28 @@ const registerEventsSectionListener = () => {
       (event.target.id.startsWith("deleteBtnId")) {
       const deleteBtnId = event.target.id.split("--")[1]
       eventAPI.deleteEvent(deleteBtnId)
-        .then(getAndRenderEvents)
-    } else if
+        .then(eventEntry.getAndRenderEvents(parseInt(sessionStorage.getItem("activeUser"))))
 
-      (event.target.id.startsWith("submit")) {
+    } else if (event.target.id.startsWith("editBtnId")) {
+
+      const editBtnId = event.target.id.split("--")[1]
+      console.log("editBtnId: ", editBtnId);
+      // Render form with a save button to the top of page
+      const newEventForm = htmlRep.createEditInputs(event.target.previousElementSibling.previousElementSibling.textContent)
+      addEventContainer.innerHTML = newEventForm
+      // select form inputs and populate them with the event to edit's information
+      const nameInput = document.querySelector("#eventName__input")
+      const locationInput = document.querySelector("#eventLocation__input")
+      const dateInput = document.querySelector("#eventDate__input")
+      locationInput.value = event.target.previousElementSibling.textContent
+      nameInput.value = event.target.previousElementSibling.previousElementSibling.previousElementSibling.textContent
+
+    } else if(event.target.id.startsWith("save")) {
+      const editedEvent = htmlRep.createEventObject(logedInUser, nameInput.value, dateInput.value, locationInput.value)
+      eventAPI.editEvent(editedEvent)
+      eventEntry.getAndRenderEvents(logedInUser)
+    } else if  (event.target.id.startsWith("submit")) {
+
       const nameInput = document.querySelector("#eventName__input")
       const locationInput = document.querySelector("#eventLocation__input")
       const dateInput = document.querySelector("#eventDate__input")
@@ -42,19 +60,13 @@ const registerEventsSectionListener = () => {
         const newEvent = htmlRep.createEventObject(logedInUser, nameInput.value, dateInput.value, locationInput.value)
         //call the API method saveEvent from data.js and pass it the new entry.
         eventAPI.saveEvent(newEvent).then(() => {
-          const eventsContainer = document.querySelector("#eventCard__article")
-          eventsContainer.innerHTML = ""
           eventEntry.getAndRenderEvents(logedInUser)
         })
-        // Reset all the fields to an empty string. Set date to current date
+
 
       }
     }
   })
 }
 
-//  if (event.target.id.startsWith("editBtnId")) {
-//   const editBtnId = event.target.id.split("--")[1]
-//   eventEntry.updateFormFields(editBtnId)
-//  }
 export default registerEventsSectionListener

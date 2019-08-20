@@ -14,6 +14,21 @@ const htmlRep = {
    `
    },
 
+   createEditInputs(date) {
+      return `
+      <legend>Add New Event</legend>
+      <fieldset>
+         <label for="editName__input">Name:</label>
+         <input type="text" id="eventName__input">
+         <label for="editDate__input">Date:</label>
+         <input type="date" id="eventDate__input" value="${date}">
+         <label for="editLocation__input">Location:</label>
+         <input type="text" id="eventLocation__input"></textarea>
+      </fieldset>
+      <button id="submit">Save</button>
+   `
+   },
+
    createEventObject(userId, name, date, location) {
       return {
          userId: userId,
