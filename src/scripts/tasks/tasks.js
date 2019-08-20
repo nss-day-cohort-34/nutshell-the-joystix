@@ -13,15 +13,17 @@ const renderTaskSection = () => {
   const newTaskDiv = document.querySelector("#newTask__div");
 
   // fetches API and renders it to DOM
-  taskAPImethods
-    .getTasks(parseInt(sessionStorage.getItem("activeUser")))
-    .then(parsedTasks => {
-      for (let i = 0; i < parsedTasks.length; i++) {
-        const tasks = parsedTasks[i];
-        const convertedTasks = taskFactoryObj.createTaskListHTML(tasks);
-        taskDomObj.renderTaskList(taskContainer, convertedTasks);
-      }
-    });
+  const getTasksPostToDom = () => {
+    taskAPImethods
+      .getTasks(parseInt(sessionStorage.getItem("activeUser")))
+      .then(parsedTasks => {
+        for (let i = 0; i < parsedTasks.length; i++) {
+          const tasks = parsedTasks[i];
+          const convertedTasks = taskFactoryObj.createTaskListHTML(tasks);
+          taskDomObj.renderTaskList(taskContainer, convertedTasks);
+        }
+      });
+  };
 
   // event listener that handles all API methods
   document.querySelector("#main").addEventListener("click", event => {
@@ -45,7 +47,10 @@ const renderTaskSection = () => {
       if (taskObj.newTask === "" || taskObj.newTaskDate === "") {
         alert("Please fill out both fields");
       } else {
-        taskAPImethods.postTaskEntry(taskObj);
+        taskAPImethods
+          .postTaskEntry(taskObj)
+          .then((newTaskDiv.innerHTML = ""))
+          .then(getTasksPostToDom);
       }
       // if checkbox is clicked DELETE this task
     } else if (event.target.id.startsWith("taskCheckbox")) {
