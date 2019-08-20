@@ -1,27 +1,15 @@
-import taskListHTMLObj from "../tasks/factory.js";
+const taskDomMethods = {
+  renderTaskSection: taskSectionHTML => {
+    document.querySelector("#main").innerHTML += taskSectionHTML;
+  },
 
-const taskContainer = document.querySelector("#main");
+  renderTaskList: (location, taskListHTMLRep) => {
+    location.innerHTML += taskListHTMLRep;
+  },
 
-const renderTaskHeader = taskHeaderHTML => {
-  taskContainer.innerHTML += taskHeaderHTML;
+  renderTaskForm: (location, taskHTML) => {
+    location.innerHTML += taskHTML;
+  }
 };
 
-const renderTaskList = taskListHTMLRep => {
-  taskContainer.innerHTML += taskListHTMLRep;
-};
-
-const renderNewTaskButton = taskBtn => {
-  taskContainer.innerHTML += taskBtn;
-};
-
-const renderTaskForm = taskHTML => {
-  taskContainer.innerHTML += taskHTML;
-};
-
-
-export default {
-  renderTaskHeader,
-  renderTaskList,
-  renderTaskForm,
-  renderNewTaskButton
-};
+export default taskDomMethods;
