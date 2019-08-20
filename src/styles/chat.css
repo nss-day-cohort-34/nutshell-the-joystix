@@ -1,15 +1,44 @@
+.chat__section {
+  border: 1px solid #3d4150;
+  width: 501px;
+}
+
+.chat__section h2 {
+  text-align: center;
+}
+
 .message__div {
   align-items: flex-start;
+  background-color: white;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  margin: 20px 15px;
+  padding: 15px;
 }
+/* Selects all elements inside each message */
 .message__div > * {
   margin: 5px 0;
 }
 
 .messages__articleTag {
+  background-color: #3d4150;
+  border: 1px solid #3d4150;
   height: 500px;
   overflow-y: auto;
   width: 500px;
 }
+
+.addMessage__aside {
+  display: flex;
+}
+
+#newMessage__input {
+  width: 80%;
+  height: 100%;
+}
+
+#sendMessage__button {
+  width: 20%;
+}
+

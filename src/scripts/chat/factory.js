@@ -21,7 +21,7 @@ const factoryObj = {
     chatMessageComponent: (message) => {
 
         if (message.userId === parseInt(sessionStorage.getItem("activeUser"))) {
-            return `<div class="message__div--${message.id}">
+            return `<div class="message__div message__div--${message.id}">
                         <h5>
                             <i class="fas fa-user"></i>
                             ${message.user.username}
@@ -43,7 +43,7 @@ const factoryObj = {
         }
     },
     editMessageComponent: (message) => {
-        return `<div class="message__div--${message.id}">
+        return `<div class="message__div message__div--${message.id}">
                     <h5 id="username__h5--${message.userId}">
                         <i class="fas fa-user"></i>
                         ${message.user.username}
