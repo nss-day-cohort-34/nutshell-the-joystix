@@ -10,16 +10,13 @@ const factory = {
         <section class="newsItem" id="newsItem--${articleObj.id}">
             <h2 class="name">${articleObj.title}</h2>
             <p class="info"> ${articleObj.synopsis}</p>
+            <p class="info">${articleObj.url}</p>
             <p class="info">${articleObj.date}</p>
-            <a class="info" href="${articleObj.url}">link</a>
         </section>
         <section>
             <button class="edit__button" id="editArticle--${articleObj.id}">Edit</button>
             <button class="delete__button" id="deleteArticle--${articleObj.id}">Delete</button>
         </section>
-
-
-
         `
     },
     createAddArticleButton () {
@@ -33,16 +30,13 @@ const factory = {
         return `
             <section id="inputContainer">
                 <fieldset>
+                    <input type="hidden" id="articleId" value="">
                     <label for="title">Title</label>
                     <input id="titleInput" type="text">
                 </fieldset>
                 <fieldset>
                     <label for="synopsis">Synopsis</label>
                     <textarea id="synopsisInput"></textarea>
-                </fieldset>
-                <fieldset>
-                    <label for="date">Date</label>
-                    <input id="dateInput" type="date">
                 </fieldset>
                 <fieldset>
                     <label for="url">URL</label>

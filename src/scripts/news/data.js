@@ -23,6 +23,23 @@ const data = {
         })
         .then(response => response.json())
     },
+    updateFormFields(articleId) {
+        const intTitleInput = document.querySelector("#intTitleInput")
+        const intSynopsisInput = document.querySelector("#intSynopsisInput")
+        const intUrlInput = document.querySelector("#intUrlInput")
+        return fetch(`http://localhost:8088/news/${articleId}`)
+        .then(response => response.json())
+    },
+    editArticle(updatedObject, articleId) {
+        return fetch(`http://localhost:8088/news/${articleId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedObject)
+        })
+        .then(response => response.json())
+    }
 }
 
 export default data
