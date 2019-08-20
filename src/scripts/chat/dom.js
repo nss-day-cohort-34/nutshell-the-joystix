@@ -6,17 +6,14 @@ const renderChatComponent = (messagesArray) => {
     const messagesTag = document.querySelector(".messages__articleTag")
     const sortedMessages = messagesArray.sort((a, b) => {
         if (a.date < b.date) {
-            console.log("returning 1")
-            return 1
-        }
-        if (a.date > b.date) {
-            console.log("returning -1")
             return -1
         }
-        return 0;
+        if (a.date > b.date) {
+            return 0
+        }
+        return 1
 
     })
-    console.log("sortedMessages: ", sortedMessages);
     sortedMessages.forEach(message => {
         messagesTag.innerHTML += chatHTMLObj.chatMessageComponent(message)
     })

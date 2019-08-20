@@ -1,4 +1,5 @@
 // factory function that takes in a current chat messages array and returns an HTML string to display the chat component to the DOM
+
 const factoryObj = {
     createChatContainerHTML: () => {
         return `
@@ -18,11 +19,38 @@ const factoryObj = {
         `
     },
     chatMessageComponent: (message) => {
-        console.log(message)
-        return `<div class="message__div">
-                    <h5><ion-icon name="contact"></ion-icon>${message.user.username}</h5>
+
+        if (message.userId === parseInt(sessionStorage.getItem("activeUser"))) {
+            return `<div class="message__div--${message.id}">
+                        <h5>
+                            <i class="fas fa-user"></i>
+                            ${message.user.username}
+                        </h5>
+                        <h6>${message.date}</h6>
+                        <p class="message__p">${message.message}</p>
+                        <button id="edit__button--${message.id}" class="edit__button">Edit</button>
+                    </div>`
+        } else {
+            return `<div class="message__div">
+                        
+                        <h5>
+                            <i class="fas fa-user"></i>
+                            ${message.user.username}
+                        </h5>
+                        <h6>${message.date}</h6>
+                        <p class="message__p">${message.message}</p>
+                    </div>`
+        }
+    },
+    editMessageComponent: (message) => {
+        return `<div class="message__div--${message.id}">
+                    <h5 id="username__h5--${message.userId}">
+                        <i class="fas fa-user"></i>
+                        ${message.user.username}
+                    </h5>
                     <h6>${message.date}</h6>
-                    <p class="message__p">${message.message}</p>
+                    <textarea name="editMessageContent" id="editMessageContent__textarea" cols="30" rows="10">${message.message}</textarea>
+                    <button id="save__button--${message.id}" class="edit__button">Save</button>
                 </div>`
     }
 }
