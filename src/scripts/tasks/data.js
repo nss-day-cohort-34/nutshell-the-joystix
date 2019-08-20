@@ -15,9 +15,13 @@ const taskAPIMethods = {
     }).then(tasks => tasks.json());
   },
 
-  deleteTaskEntry: id => {
+  completeTaskEntry: (taskObj, id) => {
     return fetch(`http://localhost:8088/tasks/${id}`, {
-      method: "DELETE"
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(taskObj)
     }).then(tasks => tasks.json());
   },
 
@@ -29,6 +33,12 @@ const taskAPIMethods = {
       },
       body: JSON.stringify(taskObj)
     }).then(tasks => tasks.json());
+  },
+
+  updateTaskField: taskId => {
+    return fetch(`http://localhost:8088/tasks/${taskId}`).then(response =>
+      response.json()
+    );
   }
 };
 

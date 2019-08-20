@@ -13,11 +13,10 @@ const taskFactoryObject = {
 
   createTaskListHTML: tasks => {
     return `
-    <div id="taskItem-${tasks.id}">
-      <input type="hidden" id="editForm__hiddenInput-${tasks.id}" value="" />
+    <div id="taskItem-${tasks.id}" class="taskItem">
       <input type="checkbox" id="taskCheckbox__checkbox-${tasks.id}" >
       <p id="task__text">${tasks.taskName}</p>
-      <p id="taskDate__date">Due Date: ${tasks.taskDate}</p>
+      <p id="taskDate__date">${tasks.taskDate}</p>
       <button id="editTask__button-${tasks.id}">Edit Task</button>
     </div>`;
   },
@@ -37,6 +36,15 @@ const taskFactoryObject = {
     </div>`;
   },
 
+  createCompletedObject(userId, completedTaskName, completedTaskDate) {
+    return {
+      userId: userId,
+      taskName: completedTaskName,
+      taskDate: completedTaskDate,
+      isComplete: true
+    };
+  },
+
   createEditForm: () => {
     return `
     <div id="editTask__form">
@@ -51,6 +59,15 @@ const taskFactoryObject = {
       <button id="submitNewTask__button">Submit</button>
     </div>
     `;
+  },
+
+  createEditTaskObject(userId, editTaskName, editTaskDate) {
+    return {
+      userId: userId,
+      taskName: editTaskName,
+      taskDate: editTaskDate,
+      isComplete: false
+    };
   }
 };
 

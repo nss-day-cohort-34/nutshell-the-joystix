@@ -11,19 +11,24 @@ const renderTaskSection = () => {
   // stores new variables that were generated dynamically
   const taskContainer = document.querySelector("#taskList__div");
   const newTaskDiv = document.querySelector("#newTask__div");
+  const loggedInUser = parseInt(sessionStorage.getItem("activeUser"));
 
   // fetches API and renders it to DOM
-  const getTasksPostToDom = () => {
+  const getTasksToDom = () => {
     taskAPImethods
       .getTasks(parseInt(sessionStorage.getItem("activeUser")))
       .then(parsedTasks => {
         for (let i = 0; i < parsedTasks.length; i++) {
-          const tasks = parsedTasks[i];
-          const convertedTasks = taskFactoryObj.createTaskListHTML(tasks);
-          taskDomObj.renderTaskList(taskContainer, convertedTasks);
+          const task = parsedTasks[i];
+          if (task.isComplete === false) {
+            const convertedTasks = taskFactoryObj.createTaskListHTML(task);
+            taskDomObj.renderTaskList(taskContainer, convertedTasks);
+          }
         }
       });
   };
+
+  getTasksToDom();
 
   // event listener that handles all API methods
   document.querySelector("#main").addEventListener("click", event => {
@@ -32,35 +37,90 @@ const renderTaskSection = () => {
       newTaskDiv.innerHTML = "";
       const taskForm = taskFactoryObj.createTaskFormHTML();
       taskDomObj.renderTaskForm(newTaskDiv, taskForm);
+
       // POSTS new task to API
     } else if (event.target.id.startsWith("submitNewTask")) {
       const newTask = document.querySelector("#newTask__input");
       const newTaskDate = document.querySelector("#newTask__date");
-
       const taskObj = {
         userId: parseInt(sessionStorage.getItem("activeUser")),
         taskName: newTask.value,
         taskDate: newTaskDate.value,
         isComplete: false
       };
-
       if (taskObj.newTask === "" || taskObj.newTaskDate === "") {
         alert("Please fill out both fields");
       } else {
         taskAPImethods
           .postTaskEntry(taskObj)
-          .then((newTaskDiv.innerHTML = ""))
-          .then(getTasksPostToDom);
+          .then((taskContainer.innerHTML = ""))
+          .then(getTasksToDom);
       }
-      // if checkbox is clicked DELETE this task
+
+      // if checkbox is clicked update isCompleted to TRUE and remove task from DOM
     } else if (event.target.id.startsWith("taskCheckbox")) {
-      console.log("checkbox");
       const id = event.target.id.split("-")[1];
-      taskAPImethods.deleteTaskEntry(id);
+
+      const completedTaskInput = event.target.nextElementSibling;
+      const completedTaskDate =
+        event.target.nextElementSibling.nextElementSibling;
+
+      const completedTaskObj = taskFactoryObj.createCompletedObject(
+        loggedInUser,
+        completedTaskInput.textContent,
+        completedTaskDate.textContent
+      );
+
+      taskAPImethods
+        .completeTaskEntry(completedTaskObj, id)
+        .then((taskContainer.innerHTML = ""))
+        .then(getTasksToDom);
       // edit the task with PUT method
     } else if (event.target.id.startsWith("editTask")) {
       const id = event.target.id.split("-")[1];
-      console.log(id);
+
+      const editTaskContainer = document.querySelector(
+        `#editTask__button-${id}`
+      ).parentElement;
+
+      editTaskContainer.innerHTML = `
+      <div id="editTask__form">
+      <input type="hidden" id="editForm__hiddenInput" value="" />
+      <fieldset>
+        <label>New Task</label>
+        <input type="text" id="editName__input" >
+      </fieldset>
+      <fieldset>
+        <label>Due Date</label>
+        <input type="date" id="editDate__date" >
+      </fieldset>
+      <button id="submitEditTask__button">Submit</button>
+    </div>
+      `;
+
+      const hiddenTaskForm = document.querySelector("#editForm__hiddenInput");
+      const editTaskInput = document.querySelector("#editName__input");
+      const editTaskDate = document.querySelector("#editDate__date");
+      taskAPImethods.updateTaskField(id).then(task => {
+        hiddenTaskForm.value = task.id;
+        editTaskInput.value = task.taskName;
+        editTaskDate.value = task.taskDate;
+      });
+    } else if (event.target.id.startsWith("submitEditTask")) {
+      const hiddenTaskForm = document.querySelector("#editForm__hiddenInput");
+      const editTaskInput = document.querySelector("#editName__input");
+      const editTaskDate = document.querySelector("#editDate__date");
+
+      const edittedTask = taskFactoryObj.createEditTaskObject(
+        loggedInUser,
+        editTaskInput.value,
+        editTaskDate.value
+      );
+
+      taskAPImethods
+        .editTaskEntry(edittedTask, hiddenTaskForm.value)
+        .then((taskContainer.innerHTML = ""))
+        .then(getTasksToDom);
     }
   });
 };
