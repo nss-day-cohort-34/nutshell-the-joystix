@@ -36,7 +36,7 @@ const taskFactoryObject = {
     </div>`;
   },
 
-  createCompletedObject(userId, completedTaskName, completedTaskDate) {
+  createCompletedTaskObj(userId, completedTaskName, completedTaskDate) {
     return {
       userId: userId,
       taskName: completedTaskName,

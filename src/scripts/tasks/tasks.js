@@ -67,7 +67,7 @@ const renderTaskSection = () => {
       const completedTaskDate =
         event.target.nextElementSibling.nextElementSibling;
 
-      const completedTaskObj = taskFactoryObj.createCompletedObject(
+      const completedTaskObj = taskFactoryObj.createCompletedTaskObj(
         loggedInUser,
         completedTaskInput.textContent,
         completedTaskDate.textContent
