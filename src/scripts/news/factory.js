@@ -1,5 +1,5 @@
 
-const factory = {
+const newsFactory = {
     createNewsContainer () {
         return `
         <section id="news__container">
@@ -8,7 +8,7 @@ const factory = {
                 <button id="addArticle__button">+</button>
             </div>
             <div id="newsList">
-            
+
             </div>
         </section>
         `
@@ -68,4 +68,4 @@ const factory = {
 }
 
 
-export default factory
+export default newsFactory

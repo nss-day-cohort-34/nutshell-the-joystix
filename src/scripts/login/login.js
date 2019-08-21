@@ -1,4 +1,7 @@
 import API from "../data/data.js"
+import newsData from "../news/data.js"
+import newsDom from "../news/dom.js"
+import news from "../news/news.js"
 
 const userLogin = () => {
     const mainTag = document.querySelector("#main")
@@ -25,10 +28,16 @@ const userLogin = () => {
                             mainTag.innerHTML = ""
                             // Set session storage to store logged in user's id
                             sessionStorage.setItem("activeUser", foundUser.id)
+                            let loggedInUser = parseInt(sessionStorage.getItem("activeUser"))
                             // Render Home Page
 
                             //news
-
+                            newsData.getNewsData(loggedInUser)
+                            .then(articles => {
+                                newsDom.renderNewsContainer()
+                                newsDom.renderArticles(articles)
+                            })
+                            .then(news.registerNewsListeners)
 
                             //end news
 

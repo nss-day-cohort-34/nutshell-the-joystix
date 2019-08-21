@@ -1,7 +1,5 @@
-import factory from "./factory.js"
+import newsFactory from "./factory.js"
 
-const mainContainer = document.querySelector("#main")
-const newsContainer = document.querySelector("#newsList")
 
 
 const sortArticles = (articles) => {
@@ -17,12 +15,12 @@ const sortArticles = (articles) => {
 }
 
 
-const dom = {
+const newsDom = {
     renderArticles (articlesArray) {
         const newsContainer = document.querySelector("#newsList")
         sortArticles(articlesArray)
         for (let articleObject of articlesArray) {
-            let articleHTML = factory.createNewsHTML(articleObject)
+            let articleHTML = newsFactory.createNewsHTML(articleObject)
             newsContainer.innerHTML += articleHTML
         }
     },
@@ -31,11 +29,11 @@ const dom = {
         newsContainer.innerHTML += newHTML
     },
     renderNewsContainer () {
-        const newsContainer = document.querySelector("#newsList")
-        let newsContainerHTML = factory.createNewsContainer()
+        const mainContainer = document.querySelector("#main")
+        let newsContainerHTML = newsFactory.createNewsContainer()
         mainContainer.innerHTML += newsContainerHTML
     }
 
 }
 
-export default dom
+export default newsDom

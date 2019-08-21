@@ -1,19 +1,10 @@
-import dom from "./dom.js"
-import data from "./data.js";
-import factory from "./factory.js"
+import newsDom from "./dom.js"
+import newsData from "./data.js";
+import newsFactory from "./factory.js"
 
 let loggedInUser = parseInt(sessionStorage.getItem("activeUser"))
 const newsContainer = document.querySelector("#newsList")
-// const getAndRenderNews = (userId) => {
-//     dom.renderAddArticleButton()
-//     data.getNewsData(userId)
-//         .then(articlesArray => {
-//             dom.renderArticles(articlesArray)
-//         })
-// }
-// write factory and render functions for news container
-//refactor main references to news container
-//delete and edit
+
 
 const registerNewsListeners = () => {
     const mainContainer = document.querySelector("#main")
@@ -21,11 +12,11 @@ const registerNewsListeners = () => {
         if (event.target.id.startsWith("addArticle")) {
             const newsContainer = document.querySelector("#newsList")
             newsContainer.innerHTML = "";
-            const newArticleForm = factory.createNewArticleInputs();
-            dom.renderNewArticleInputs(newArticleForm);
-            data.getNewsData(loggedInUser)
+            const newArticleForm = newsFactory.createNewArticleInputs();
+            newsDom.renderNewArticleInputs(newArticleForm);
+            newsData.getNewsData(loggedInUser)
                 .then(articles => {
-                    dom.renderArticles(articles)
+                    newsDom.renderArticles(articles)
                 })
         }
     })
@@ -42,11 +33,11 @@ const registerNewsListeners = () => {
                 const timestamp = new Date().toLocaleString()
                 const newsContainer = document.querySelector("#newsList")
                 newsContainer.innerHTML = ""
-                const newArticleObject = factory.createNewsObject(loggedInUser, titleInput.value, synopsisInput.value, urlInput.value, timestamp)
-                data.saveNewArticle(newArticleObject)
-                    .then(() => data.getNewsData(loggedInUser))
+                const newArticleObject = newsFactory.createNewsObject(loggedInUser, titleInput.value, synopsisInput.value, urlInput.value, timestamp)
+                newsData.saveNewArticle(newArticleObject)
+                    .then(() => newsData.getNewsData(loggedInUser))
                     .then(articles => {
-                        dom.renderArticles(articles)
+                        newsDom.renderArticles(articles)
                     })
             }
             //update existing article with edits
@@ -56,16 +47,16 @@ const registerNewsListeners = () => {
             const intTitleInput = document.querySelector("#intTitleInput")
             const intSynopsisInput = document.querySelector("#intSynopsisInput")
             const intUrlInput = document.querySelector("#intUrlInput")
-            const editedArticle = factory.createNewsObject(loggedInUser, intUrlInput.value, intTitleInput.value, intSynopsisInput.value, timestamp)
+            const editedArticle = newsFactory.createNewsObject(loggedInUser, intUrlInput.value, intTitleInput.value, intSynopsisInput.value, timestamp)
             if (intTitleInput.value === "" || intSynopsisInput.value === "" || intUrlInput.value === "") {
                 alert("Please fill in all fields before submitting")
             } else {
                 const newsContainer = document.querySelector("#newsList")
                 newsContainer.innerHTML = ""
-                data.editArticle(editedArticle, hiddenArticleId.value)
-                    .then(() => data.getNewsData(loggedInUser))
+                newsData.editArticle(editedArticle, hiddenArticleId.value)
+                    .then(() => newsData.getNewsData(loggedInUser))
                     .then(articles => {
-                        dom.renderArticles(articles)
+                        newsDom.renderArticles(articles)
                     })
             }
         }
@@ -75,15 +66,14 @@ const registerNewsListeners = () => {
         if (event.target.id.startsWith("deleteArticle--")) {
             const articleToDelete = event.target.id.split("--")[1]
             console.log(articleToDelete)
-            data.deleteArticle(articleToDelete)
-                .then(data.getEntriesData)
+            newsData.deleteArticle(articleToDelete)
+                .then(() => newsData.getNewsData(loggedInUser))
                 .then(() => {
                     const newsContainer = document.querySelector("#newsList")
                     newsContainer.innerHTML = ""
-                    data.getNewsData(loggedInUser)
+                    newsData.getNewsData(loggedInUser)
                         .then(articles => {
-
-                            dom.renderArticles(articles)
+                            newsDom.renderArticles(articles)
                         })
                 })
         }
@@ -117,7 +107,7 @@ const registerNewsListeners = () => {
             //GET article data
             //convert and render as input values (update form fields)
             let hiddenArticleId = document.getElementById("articleId")
-            data.updateFormFields(articleToEditId)
+            newsData.updateFormFields(articleToEditId)
                 .then(article => {
                     hiddenArticleId.value = article.id
                     intTitleInput.value = article.title
