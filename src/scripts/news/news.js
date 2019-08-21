@@ -33,7 +33,7 @@ const registerNewsListeners = () => {
                 const timestamp = new Date().toLocaleString()
                 const newsContainer = document.querySelector("#newsList")
                 newsContainer.innerHTML = ""
-                const newArticleObject = newsFactory.createNewsObject(loggedInUser, titleInput.value, synopsisInput.value, urlInput.value, timestamp)
+                const newArticleObject = newsFactory.createNewsObject(loggedInUser, urlInput.value, titleInput.value, synopsisInput.value, timestamp)
                 newsData.saveNewArticle(newArticleObject)
                     .then(() => newsData.getNewsData(loggedInUser))
                     .then(articles => {
