@@ -3,6 +3,9 @@ import htmlRep from "../events/factory.js"
 import renderObj from "../events/dom.js"
 import eventApi from "../events/data.js"
 import registerEventsSectionListener from "../events/events.js"
+import newsData from "../news/data.js"
+import newsDom from "../news/dom.js"
+import news from "../news/news.js"
 
 const userLogin = () => {
     const mainTag = document.querySelector("#main")
@@ -29,10 +32,16 @@ const userLogin = () => {
                             mainTag.innerHTML = ""
                             // Set session storage to store logged in user's id
                             sessionStorage.setItem("activeUser", foundUser.id)
+                            let loggedInUser = parseInt(sessionStorage.getItem("activeUser"))
                             // Render Home Page
 
                             //news
-
+                            newsData.getNewsData(loggedInUser)
+                            .then(articles => {
+                                newsDom.renderNewsContainer()
+                                newsDom.renderArticles(articles)
+                            })
+                            .then(news.registerNewsListeners)
 
                             //end news
 

@@ -1,16 +1,10 @@
 // import
 import landingDomObject from "./landing/dom.js";
 import landingEventObject from "./landing/landing.js";
-import registerAddUser from "./register/register.js"
-import userLogin from "./login/login.js"
-import navBarDomObject from "./navbar/dom.js";
+import registerAddUser from "./register/register.js";
+import userLogin from "./login/login.js";
 
 // end import
-
-// navBar
-navBarDomObject.renderHomeNavBar();
-navBarDomObject.renderFriendsNavBar();
-//navBar
 
 // begin landing page
 landingDomObject.renderLandingToDom();
@@ -23,7 +17,7 @@ landingEventObject.loginFormBtn();
 //end login page
 
 // register click listener for when a user clicks on addUser button
-registerAddUser()
+registerAddUser();
 
 //login user
-userLogin()
+userLogin();
