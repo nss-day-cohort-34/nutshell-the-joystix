@@ -14,8 +14,16 @@ let addEventContainer = document.querySelector("#addEvent__aside")
 const eventEntry = {
   renderEvents(parsedEntries) {
     const eventsContainer = document.querySelector("#eventCard__article")
+    const sortedEntries = parsedEntries.sort((a,b)=>{
+      if(a.date > b.date) {
+        return 0
+      } else if(a.date < b.date){
+        return -1
+      }
+      return 1
+    })
     eventsContainer.innerHTML = ""
-    for (let eventEntry of parsedEntries) { //changed const to let
+    for (let eventEntry of sortedEntries) { //changed const to let
       let eventEntryHTML = htmlRep.createEventCard(eventEntry) //changed const to let
       eventsContainer.innerHTML += eventEntryHTML
     }

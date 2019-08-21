@@ -1,4 +1,8 @@
 import API from "../data/data.js"
+import htmlRep from "../events/factory.js"
+import renderObj from "../events/dom.js"
+import eventApi from "../events/data.js"
+import registerEventsSectionListener from "../events/events.js"
 
 const userLogin = () => {
     const mainTag = document.querySelector("#main")
@@ -21,7 +25,7 @@ const userLogin = () => {
                         } else if (foundUser.password !== loginPasswordInput.value) {
                             alert("Incorrect password. Try again.")
                         } else {
-                        //THEN clear out DOM
+                            //THEN clear out DOM
                             mainTag.innerHTML = ""
                             // Set session storage to store logged in user's id
                             sessionStorage.setItem("activeUser", foundUser.id)
@@ -33,22 +37,24 @@ const userLogin = () => {
                             //end news
 
                             //events
+                            mainTag.innerHTML += htmlRep.createEventsContainer();
+                            eventApi.getEventData(foundUser.id)
+                                .then(renderObj.renderEvents)
+                                .then(registerEventsSectionListener)
+                                    //end events
+
+                                    //tasks
 
 
-                            //end events
+                                    //end tasks
 
-                            //tasks
-
-
-                            //end tasks
-
-                            //chat
+                                    //chat
 
 
-                            //end chat
-                        }
+                                    //end chat
+                                }
                     }
-                })
+                    })
         }
     })
 }

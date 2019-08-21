@@ -14,27 +14,28 @@ const htmlRep = {
    `
    },
 
-   createEditInputs(date) {
+   createEditInputs(id) {
       return `
       <legend>Add New Event</legend>
       <fieldset>
          <label for="editName__input">Name:</label>
-         <input type="text" id="eventName__input">
+         <input type="text" id="editName__input">
          <label for="editDate__input">Date:</label>
-         <input type="date" id="eventDate__input" value="${date}">
+         <input type="date" id="editDate__input">
          <label for="editLocation__input">Location:</label>
-         <input type="text" id="eventLocation__input"></textarea>
+         <input type="text" id="editLocation__input"></textarea>
       </fieldset>
-      <button id="submit">Save</button>
+      <button id="save--${id}">Save</button>
    `
    },
 
-   createEventObject(userId, name, date, location) {
+   createEventObject(userId, name, date, location, id) {
       return {
          userId: userId,
          name: name,
          date: date,
          location: location,
+         id: id
       }
    },
 
